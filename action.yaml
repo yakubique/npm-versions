@@ -1,0 +1,27 @@
+name: npm-versions
+description: Get list of package's versions from NPM registry
+author: Vladimir Levin
+branding:
+  icon: tag
+  color: blue
+inputs:
+  package:
+    description: Name of NPM package
+    required: true
+  registry:
+    description: 'Registry URL (default: "https://registry.npmjs.org")'
+  sortVersions:
+    description: 'Sort versions by publication date ["ASC", "DESC"] (default :"ASC")'
+    default: 'ASC'
+  debug:
+    description: Be verbal
+    required: false
+  details:
+    description: Add publication date to return values
+    required: false
+outputs:
+  versions: # id of output
+    description: JSON list of versions
+runs:
+  using: 'node20'
+  main: 'action/index.js'

@@ -1,0 +1,50 @@
+name: Test `npm-versions` action
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: [ "ubuntu-latest" ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Grab versions from npmjs.org
+        id: get_versions
+        uses: ./ # Uses an action in the root directory
+        with:
+          package: emoji-hash
+      - name: Echo output
+        run: |
+          echo "${{ steps.get_versions.outputs.versions }}"
+
+  test-detailed:
+    runs-on: [ "ubuntu-latest" ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Grab detailed versions from npmjs.org
+        id: get_versions
+        uses: ./ # Uses an action in the root directory
+        with:
+          package: emoji-hash
+          details: 'true'
+      - name: Echo output
+        run: |
+          echo "${{ steps.get_versions.outputs.versions }}"
+
+  test-sorted:
+    runs-on: [ "ubuntu-latest" ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Grab detailed versions from npmjs.org
+        id: get_versions
+        uses: ./ # Uses an action in the root directory
+        with:
+          package: emoji-hash
+          sortVersions: 'desc'
+      - name: Echo output
+        run: |
+          echo "${{ steps.get_versions.outputs.versions }}"
