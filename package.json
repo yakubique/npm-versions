@@ -1,6 +1,6 @@
 {
   "name": "npm-versions",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Get list of package's versions from NPM registry",
   "main": "action/index.js",
   "scripts": {

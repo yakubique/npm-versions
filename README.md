@@ -30,7 +30,10 @@ If `false` (_default_):
 {
   "versions": [
     "1.0.0",
-    "1.0.1"
+    "1.1.0",
+    "1.2.0",
+    "1.2.1",
+    "1.3.0"
   ]
 }
 ```
@@ -42,7 +45,23 @@ If `true`:
   "versions": [
     {
       "version": "1.0.0",
-      "published_at": "2015-03-24T00:12:24.039Z"
+      "published_at": "2016-04-15T02:26:00.141Z"
+    },
+    {
+      "version": "1.1.0",
+      "published_at": "2016-04-15T03:06:20.334Z"
+    },
+    {
+      "version": "1.2.0",
+      "published_at": "2016-04-19T05:39:17.391Z"
+    },
+    {
+      "version": "1.2.1",
+      "published_at": "2016-06-17T09:05:32.462Z"
+    },
+    {
+      "version": "1.3.0",
+      "published_at": "2017-06-08T04:21:08.821Z"
     }
   ]
 }
@@ -54,34 +73,39 @@ If `true`:
 
 Package's versions
 
-## Basic usage
+## Usage
+
+For live examples, please see [actions](https://github.com/yakubique/npm-versions/actions/workflows/test-myself.yaml)
 
 ```yaml
-uses: yakubique/npm-versions@0.0.1
+uses: yakubique/npm-versions@1.0.0
 with:
   package: emoji-hash
 ```
 
 ## Custom registry
+
 ```yaml
-uses: yakubique/npm-versions@0.0.1
+uses: yakubique/npm-versions@1.0.0
 with:
   package: emoji-hash
   registry: https://npm.my-company.org
 ```
 
 ## Sort versions
+
 ```yaml
-uses: yakubique/npm-versions@0.0.1
+uses: yakubique/npm-versions@1.0.0
 with:
   package: emoji-hash
   sortVersions: 'desc'
 ```
 
 ## Use output
+
 ```yaml
 steps:
-  - uses: yakubique/npm-versions@0.0.1
+  - uses: yakubique/npm-versions@1.0.0
     id: get_versions
     with:
       package: emoji-hash
