@@ -34,10 +34,14 @@ interface Version {
 
         core.info(`Getting versions for:\n  package: ${inputs.package}\n  registry: ${inputs.registry}`);
 
-        const endpoint = `${inputs.registry}/-/package/`
+        const endpoint = `${inputs.registry}/${inputs.package}/`
 
         const http = new httpm.HttpClient('npm-versions')
         const res: httpm.HttpClientResponse = await http.get(endpoint)
+
+        if (inputs.debug) {
+            core.info(`Status: ${res.message.statusCode}`)
+        }
 
         const body: string = await res.readBody()
         const json = JSON.parse(body)
@@ -54,19 +58,19 @@ interface Version {
         });
 
         if (inputs.debug) {
-            core.info(`Server responded with: ${allVersions}`)
+            core.info(`Server responded with: ${JSON.stringify(allVersions)}`)
         }
 
         allVersions.sort(
             (a, b) =>
-                (inputs.sortVersions * new Date(b.published_at as string).getTime() -
+                inputs.sortVersions * (new Date(b.published_at as string).getTime() -
                     new Date(a.published_at as string).getTime()),
         );
 
         if (inputs.details) {
-            setOutputs(allVersions, inputs.debug);
+            setOutputs({ versions: allVersions }, inputs.debug);
         } else {
-            setOutputs(allVersions.map((x) => x.version))
+            setOutputs({ versions: allVersions.map((x) => x.version) }, inputs.debug)
         }
 
         core.info('Get release has finished successfully');

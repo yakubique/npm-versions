@@ -33,6 +33,7 @@ export interface ActionInputs {
 }
 
 export function getInputs(): ActionInputs {
+
     const result: ActionInputs | any = {};
 
     result.package = core.getInput(Inputs.Package, { required: true });
@@ -43,16 +44,16 @@ export function getInputs(): ActionInputs {
 
     let sortVersions = core.getInput(Inputs.SortVersions, { required: false });
     if (isBlank(sortVersions)) {
-        result.sortVersions = 1;
+        result.sortVersions = -1;
     } else {
         sortVersions = sortVersions.trim().toLowerCase();
         if (sortVersions === 'asc') {
-            result.sortVersions = 1;
-        } else if (sortVersions === 'desc') {
             result.sortVersions = -1;
+        } else if (sortVersions === 'desc') {
+            result.sortVersions = 1;
         } else {
             core.warning("Unexpected value of `sortVersions`. Using default instead.");
-            result.sortVersions = 1;
+            result.sortVersions = -1;
         }
     }
 
