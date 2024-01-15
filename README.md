@@ -78,7 +78,7 @@ Package's versions
 For live examples, please see [actions](https://github.com/yakubique/npm-versions/actions/workflows/test-myself.yaml)
 
 ```yaml
-uses: yakubique/npm-versions@1.0.0
+uses: yakubique/npm-versions@v1
 with:
   package: emoji-hash
 ```
@@ -86,7 +86,7 @@ with:
 ## Custom registry
 
 ```yaml
-uses: yakubique/npm-versions@1.0.0
+uses: yakubique/npm-versions@v1
 with:
   package: emoji-hash
   registry: https://npm.my-company.org
@@ -95,7 +95,7 @@ with:
 ## Sort versions
 
 ```yaml
-uses: yakubique/npm-versions@1.0.0
+uses: yakubique/npm-versions@v1
 with:
   package: emoji-hash
   sortVersions: 'desc'
@@ -105,7 +105,7 @@ with:
 
 ```yaml
 steps:
-  - uses: yakubique/npm-versions@1.0.0
+  - uses: yakubique/npm-versions@v1
     id: get_versions
     with:
       package: emoji-hash
