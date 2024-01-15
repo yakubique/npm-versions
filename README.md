@@ -2,6 +2,46 @@
 
 Get list of package's versions from NPM registry
 
+## Usage
+
+For live examples, please see [actions](https://github.com/yakubique/npm-versions/actions/workflows/test-myself.yaml)
+
+```yaml
+uses: yakubique/npm-versions@v1
+with:
+  package: emoji-hash
+```
+
+## Custom registry
+
+```yaml
+uses: yakubique/npm-versions@v1
+with:
+  package: emoji-hash
+  registry: https://npm.my-company.org
+```
+
+## Sort versions
+
+```yaml
+uses: yakubique/npm-versions@v1
+with:
+  package: emoji-hash
+  sortVersions: 'desc'
+```
+
+## Use output
+
+```yaml
+steps:
+  - uses: yakubique/npm-versions@v1
+    id: get_versions
+    with:
+      package: emoji-hash
+  - run: |
+      echo "${{ steps.get_versions.outputs.versions }}"
+```
+
 ## Inputs
 
 ### `package`
@@ -72,43 +112,3 @@ If `true`:
 ### `versions`
 
 Package's versions
-
-## Usage
-
-For live examples, please see [actions](https://github.com/yakubique/npm-versions/actions/workflows/test-myself.yaml)
-
-```yaml
-uses: yakubique/npm-versions@v1
-with:
-  package: emoji-hash
-```
-
-## Custom registry
-
-```yaml
-uses: yakubique/npm-versions@v1
-with:
-  package: emoji-hash
-  registry: https://npm.my-company.org
-```
-
-## Sort versions
-
-```yaml
-uses: yakubique/npm-versions@v1
-with:
-  package: emoji-hash
-  sortVersions: 'desc'
-```
-
-## Use output
-
-```yaml
-steps:
-  - uses: yakubique/npm-versions@v1
-    id: get_versions
-    with:
-      package: emoji-hash
-  - run: |
-      echo "${{ steps.get_versions.outputs.versions }}"
-```
