@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import { InputOptions } from '@actions/core';
+import { getOptional, getBooleanInput, isBlank } from '@yakubique/atils/dist';
 
 enum Inputs {
     Package = 'package',
@@ -9,20 +9,6 @@ enum Inputs {
     Details = 'details',
 }
 
-function isBlank(value: any): boolean {
-    return value === null || value === undefined || (value.length !== undefined && value.length === 0);
-}
-
-function isNotBlank(value: any): boolean {
-    return value !== null && value !== undefined && (value.length === undefined || value.length > 0);
-}
-
-export function getBooleanInput(name: string, options?: InputOptions): boolean {
-    const value = core.getInput(name, options);
-    return isNotBlank(value) &&
-        ['y', 'yes', 't', 'true', 'e', 'enable', 'enabled', 'on', 'ok', '1']
-            .includes(value.trim().toLowerCase());
-}
 
 export interface ActionInputs {
     package: string;
@@ -37,10 +23,8 @@ export function getInputs(): ActionInputs {
     const result: ActionInputs | any = {};
 
     result.package = core.getInput(Inputs.Package, { required: true });
-    result.registry = core.getInput(Inputs.Registry, { required: false });
-    if (isBlank(result.registry)) {
-        result.registry = 'https://registry.npmjs.org';
-    }
+    result.registry = getOptional(Inputs.Registry, 'https://registry.npmjs.org', { required: false });
+
 
     let sortVersions = core.getInput(Inputs.SortVersions, { required: false });
     if (isBlank(sortVersions)) {
@@ -52,7 +36,7 @@ export function getInputs(): ActionInputs {
         } else if (sortVersions === 'desc') {
             result.sortVersions = 1;
         } else {
-            core.warning("Unexpected value of `sortVersions`. Using default instead.");
+            core.warning('Unexpected value of `sortVersions`. Using default instead.');
             result.sortVersions = -1;
         }
     }

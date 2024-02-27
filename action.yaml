@@ -10,12 +10,14 @@ inputs:
     required: true
   registry:
     description: 'Registry URL (default: "https://registry.npmjs.org")'
+    default: 'https://registry.npmjs.org'
   sortVersions:
     description: 'Sort versions by publication date ["ASC", "DESC"] (default :"ASC")'
     default: 'ASC'
   debug:
     description: Be verbal
     required: false
+    default: 'false'
   details:
     description: Add publication date to return values
     required: false

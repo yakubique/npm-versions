@@ -2,12 +2,14 @@
 
 Get list of package's versions from NPM registry
 
+[![Test `npm-versions` action](https://github.com/yakubique/npm-versions/actions/workflows/test-myself.yaml/badge.svg)](https://github.com/yakubique/npm-versions/actions/workflows/test-myself.yaml)
+
 ## Usage
 
 For live examples, please see [actions](https://github.com/yakubique/npm-versions/actions/workflows/test-myself.yaml)
 
 ```yaml
-uses: yakubique/npm-versions@v1
+uses: yakubique/npm-versions@v1.2
 with:
   package: emoji-hash
 ```
@@ -15,7 +17,7 @@ with:
 ## Custom registry
 
 ```yaml
-uses: yakubique/npm-versions@v1
+uses: yakubique/npm-versions@v1.2
 with:
   package: emoji-hash
   registry: https://npm.my-company.org
@@ -24,7 +26,7 @@ with:
 ## Sort versions
 
 ```yaml
-uses: yakubique/npm-versions@v1
+uses: yakubique/npm-versions@v1.2
 with:
   package: emoji-hash
   sortVersions: 'desc'
@@ -34,7 +36,7 @@ with:
 
 ```yaml
 steps:
-  - uses: yakubique/npm-versions@v1
+  - uses: yakubique/npm-versions@v1.2
     id: get_versions
     with:
       package: emoji-hash
@@ -44,23 +46,20 @@ steps:
 
 ## Inputs
 
-### `package`
+<!-- AUTO-DOC-INPUT:START - Do not remove or modify this section -->
 
-**Required** The name of the npm package (_example_: `"emoji-hash"`).
+|    INPUT     |  TYPE  | REQUIRED |            DEFAULT             |                               DESCRIPTION                               |
+|--------------|--------|----------|--------------------------------|-------------------------------------------------------------------------|
+|    debug     | string |  false   |           `"false"`            |                                Be verbal                                |
+|   details    | string |  false   |                                |                  Add publication date to return values                  |
+|   package    | string |   true   |                                |                           Name of NPM package                           |
+|   registry   | string |  false   | `"https://registry.npmjs.org"` |          Registry URL (default: "https://registry.npmjs.org")           |
+| sortVersions | string |  false   |            `"ASC"`             | Sort versions by publication date ["ASC", <br>"DESC"] (default :"ASC")  |
 
-### `registry`
+<!-- AUTO-DOC-INPUT:END -->
 
-_Optional_ Registry URL (_default_: `"https://registry.npmjs.org"`)
 
-### `sortVersions`
-
-_Optional_ Sort versions by publication date `["ASC", "DESC"]` (_default_: `"ASC"`)
-
-### `debug`
-
-_Optional_ Be verbal (_default_: `'false'`)
-
-### `details`
+### About `details`
 
 _Optional_ Add publication date to return values (_default_: `'false'`)
 
@@ -109,6 +108,15 @@ If `true`:
 
 ## Outputs
 
-### `versions`
+<!-- AUTO-DOC-OUTPUT:START - Do not remove or modify this section -->
 
-Package's versions
+|  OUTPUT  |  TYPE  |      DESCRIPTION      |
+|----------|--------|-----------------------|
+| versions | string | JSON list of versions |
+
+<!-- AUTO-DOC-OUTPUT:END -->
+
+
+----
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/S6S1UZ9P7)
